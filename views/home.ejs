@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home pag2</title>
+</head>
+<body>
+    <h1>Hey from server 8000</h1>
+
+    <% if(locals.id) {%>
+        <p>URL generated: http://localhost:8000/url/<%= id %></p>
+   <% } %>
+   <form method="post" action="/url/">
+    <label>Enter URL</label>
+    <input type="text" name="url" placeholder="https://example.com"/>
+    <button type="submit">Generate</button>
+   </form>
+
+   <% if(locals.urls){ %>
+    <table>
+        <thead>
+            <th>S.no</th>
+            <th>ShordID</th>
+            <th>Redirect</th>
+            <th>Clicks</th>
+        </thead>
+        <tbody>
+            <% urls.forEach((element, index) => { %>
+                <tr>
+             <td><%= index + 1 %></td>
+             <td><%= element.shortId %></td>
+             <td><%= element.redirectURL %></td>
+             <td><%= element.visitHistory.length %></td>
+             </tr>
+            <% }) %>
+        </tbody>
+    </table>
+  <% } %>
+</body>
+</html>
